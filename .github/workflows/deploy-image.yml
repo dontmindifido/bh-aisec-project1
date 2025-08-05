@@ -6,11 +6,11 @@ on:
       image:
         description: "The OCI image name. This must not include a tag or digest."
         type: string
-        default: "docker.io/lmrs2/bh-aisec-project1-echo-server"
+        default: "docker.io/obbh/bh-aisec-project1-echo-server"
       digest:
         description: "The OCI image digest. The image digest of the form '<algorithm>:<digest>' (e.g. 'sha256:abcdef...')"
         type: string
-        default: "sha256:ce2f543c322c5b77f31bf2715dc7b54bcf1497e32e0223be7901048940005dc6"
+        default: "sha256:743e3a5f386dbe5172bf29d63076e7972f94ba96aff3bfa3d85da82157c967ea"
       policy-id:
         description: "Policy ID for the service account we want to deploy on."
         type: string
@@ -38,13 +38,13 @@ jobs:
       id-token: write # for creating OIDC tokens for signing.
       packages: write # for uploading attestations.
       contents: read # To read the repo.
-    uses: lmrs2/bh-aisec-organization/.github/workflows/image-deployer.yml@main
+    uses: dontmindifido/bh-aisec-organization/.github/workflows/image-deployer.yml@main
     with:
       policy-id: ${{ inputs.policy-id }}
       image: ${{ inputs.image }}
       digest: ${{ inputs.digest }}
       # Use name rather than env variable because env are not available for reusable workflows.
-      registry-username: lmrs2
+      registry-username: obbh
       #registry-username: ${{ github.actor }}
     secrets:
       registry-password: ${{ secrets.REGISTRY_PASSWORD }}
